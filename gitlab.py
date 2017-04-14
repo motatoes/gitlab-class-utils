@@ -51,7 +51,7 @@ class GitlabAPI:
 
     def get_project_details(self, namespace, projectname):
         request_url = BASE_URL + "api/v3/projects/" + namespace + "%2F" + projectname + "%s"        
-        result = requests.post( request_url, headers={"PRIVATE-TOKEN": private_token})
+        result = requests.get( request_url, headers={"PRIVATE-TOKEN": private_token})
         resultJson = json.loads(result.text)
         return resultJson
 
@@ -63,7 +63,7 @@ class GitlabAPI:
             "access_level": access_level
         }
 
-        result = requests.post( BASE_URL + "api/v3/groups/%s/members" % groupid, 
+        result = requests.get( BASE_URL + "api/v3/groups/%s/members" % groupid, 
                     data=groupAddParams, headers={"PRIVATE-TOKEN": private_token} )
 
         print(groupid, file=sys.stderr)
@@ -76,7 +76,7 @@ class GitlabAPI:
     def get_group_members(self, groupid, page=1, perpage=20):
         private_token = self.private_token
         request_url = BASE_URL + "api/v3/groups/%s/members?page=%s&per_page=%s" % (groupid, page, perpage)
-        result = requests.post( request_url, headers={"PRIVATE-TOKEN": private_token})
+        result = requests.get( request_url, headers={"PRIVATE-TOKEN": private_token})
         resultJson = json.loads(result.text)
         return resultJson
 
