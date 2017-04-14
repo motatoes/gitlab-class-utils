@@ -1,6 +1,8 @@
 
 CONFIG = dict()
 
+CONFIG['GROUPNAME'] = "http://gitlab.com/"
+
 CONFIG['GROUPNAME'] = "YOUR_CLASS_GROUP_NAME"
 
 # Instructor private token
