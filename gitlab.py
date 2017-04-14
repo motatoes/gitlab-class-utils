@@ -16,7 +16,7 @@ class GitlabAPI:
         private_token = self.private_token
 
         res = requests.get(BASE_URL + "api/v3/users/?username=%s" % username, headers={"PRIVATE-TOKEN": private_token} )
-        print(res.text, file=sys.stderr)
+        # print(res.text, file=sys.stderr)
 
         resJson = json.loads(res.text)
 
@@ -32,9 +32,9 @@ class GitlabAPI:
 
     def get_group_details(self, groupname):
         private_token = self.private_token
-        print('fetching group info', file=sys.stderr)
+        # print('fetching group info', file=sys.stderr)
         groupsRes = requests.get(BASE_URL + "api/v3/groups/?search=%s" % groupname, headers={"PRIVATE-TOKEN": private_token} )
-        print(groupsRes.text, file=sys.stderr)
+        # print(groupsRes.text, file=sys.stderr)
         groupsResJson = json.loads(groupsRes.text)
 
         if len(groupsResJson) == 0:
@@ -66,8 +66,8 @@ class GitlabAPI:
         result = requests.get( BASE_URL + "api/v3/groups/%s/members" % groupid, 
                     data=groupAddParams, headers={"PRIVATE-TOKEN": private_token} )
 
-        print(groupid, file=sys.stderr)
-        print(result.text, file=sys.stderr)
+        # print(groupid, file=sys.stderr)
+        # print(result.text, file=sys.stderr)
 
         resultJson = json.loads(result.text)
         return resultJson
